@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://da35hasej4fve"]
+
+[ext_resource type="Texture2D" uid="uid://l8c5o0y4hepg" path="res://assets/player/arrow.png" id="1_8i65a"]
+[ext_resource type="Script" path="res://scripts/entities/player/ArrowBehaivour.cs" id="1_ndwds"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ucxsh"]
+size = Vector2(2, 3)
+
+[node name="arrow" type="Area2D"]
+script = ExtResource("1_ndwds")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4, -3)
+texture = ExtResource("1_8i65a")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, -0.5)
+shape = SubResource("RectangleShape2D_ucxsh")
+
+[node name="Life" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[connection signal="timeout" from="Life" to="." method="_OnLifeTimeout"]
